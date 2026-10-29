@@ -25,8 +25,4 @@ All six SQL scripts are in [`sql/`](sql/):
 
 ## Documentation
 
-See [Project Report](docs/project-report.md) for architecture, model choices, job flow, dashboard design, validation evidence, limitations, and Sprint 1–4 progression.
-
-## Validation snapshot
-
-The supplied Sprint 4 walkthrough reports 32 initial fact rows and 35 after a simulation added three order lines. These results are reported from the walkthrough, not independently queried in this repository.
+See the [Project Report](docs/project-report.md) for architecture, the visual Lakeflow job flow, model choices, dashboard design, validation evidence, limitations, and Sprint 1–4 progression.

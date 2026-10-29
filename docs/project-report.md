@@ -68,7 +68,7 @@ The repository includes the six SQL scripts used for source setup, simulation, a
 
 The semantic model relates the order-line fact to the customer, product, date, and channel dimensions through their surrogate keys.
 
-![Power BI model relationships](images/powerbi-data-model.jpg)
+![Power BI model relationships](images/powerbi-data-model.png)
 
 ## Power BI report
 

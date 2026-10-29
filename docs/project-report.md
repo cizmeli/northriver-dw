@@ -27,16 +27,16 @@ A Lakeflow job named `northriver_nightly_pipeline` runs the saved queries in dep
 
 ## Pipeline SQL
 
-The Databricks workspace contains these saved queries:
+The repository includes the same six SQL scripts saved in the Databricks workspace:
 
-| Query | Purpose |
-|---|---|
-| `01-Create OLTP Tables` | Creates and seeds the NorthRiver transactional source tables |
-| `OLTP Data Changes` | Simulates a new customer, customer-region change, new orders, and a late-arriving order |
-| `02-Create Warehouse Tables` | Creates the warehouse star schema |
-| `03_extract` | Refreshes staging copies from the OLTP source |
-| `04_transform` | Produces change-flagged dimensions and natural-keyed order-line rows |
-| `05_load` | Applies SCD Type 2 merges and resolves surrogate keys while loading facts |
+| Query | Repository file | Purpose |
+|---|---|---|
+| `01-Create OLTP Tables` | [`01-Create-OLTP-Tables.sql`](../sql/01-Create-OLTP-Tables.sql) | Creates and seeds the NorthRiver transactional source tables |
+| `OLTP Data Changes` | [`OLTP-Data-Changes.sql`](../sql/OLTP-Data-Changes.sql) | Simulates a new customer, customer-region change, new orders, and a late-arriving order |
+| `02-Create Warehouse Tables` | [`02-Create-Warehouse-Tables.sql`](../sql/02-Create-Warehouse-Tables.sql) | Creates the warehouse star schema |
+| `03_extract` | [`03-extract.sql`](../sql/03-extract.sql) | Refreshes staging copies from the OLTP source |
+| `04_transform` | [`04-transform.sql`](../sql/04-transform.sql) | Produces change-flagged dimensions and natural-keyed order-line rows |
+| `05_load` | [`05-load.sql`](../sql/05-load.sql) | Applies SCD Type 2 merges and resolves surrogate keys while loading facts |
 
 ## Power BI report
 

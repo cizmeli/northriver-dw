@@ -72,6 +72,8 @@ The semantic model relates the order-line fact to the customer, product, date, a
 
 ## Power BI report
 
+The complete Power BI project file is available as [`NorthRiver-Data-Model.pbix`](../powerbi/NorthRiver-Data-Model.pbix).
+
 The report canvas contains three visuals:
 
 1. **Revenue by product category** — clustered bar chart; category on the axis and summed revenue as values.

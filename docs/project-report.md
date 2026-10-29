@@ -64,6 +64,12 @@ The repository includes the six SQL scripts used for source setup, simulation, a
 | `04_transform` | [`04-transform.sql`](../sql/04-transform.sql) | Produces change-flagged dimensions and natural-keyed order-line rows |
 | `05_load` | [`05-load.sql`](../sql/05-load.sql) | Applies SCD Type 2 merges and resolves surrogate keys while loading facts |
 
+## Power BI data model
+
+The semantic model relates the order-line fact to the customer, product, date, and channel dimensions through their surrogate keys.
+
+![Power BI model relationships](images/powerbi-data-model.jpg)
+
 ## Power BI report
 
 The report canvas contains three visuals:

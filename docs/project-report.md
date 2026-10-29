@@ -32,7 +32,15 @@ flowchart LR
     A --> B --> C --> D --> E --> F --> G --> H
 ```
 
-The pipeline runs `03_extract` → `04_transform` → `05_load`. Power BI connects to the Databricks SQL warehouse endpoint and reports revenue by product category, customer region, and sales channel over time.
+**Task dependency view** — Databricks displays the three SQL tasks as a left-to-right dependency chain, each using the Serverless Starter Warehouse.
+
+![Lakeflow job task dependency graph](images/northriver-job-task-flow.jpg)
+
+**Recent run history** — the job history shows successful scheduled runs on October 27, 28, and 29, 2026, alongside successful manual runs on October 26.
+
+![Lakeflow job run history](images/northriver-job-run-history.jpg)
+
+Power BI connects to the Databricks SQL warehouse endpoint and reports revenue by product category, customer region, and sales channel over time.
 
 ## Data model and loading decisions
 

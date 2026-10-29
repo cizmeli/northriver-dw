@@ -14,7 +14,25 @@ The solution follows a three-layer ELT design in Databricks:
 | Staging | `northriver_staging` | Refreshed source copies and transformation outputs |
 | Analytics warehouse | `northriver_warehouse` | `fact_orders` and the four dimensions `dim_date`, `dim_channel`, `dim_customer`, and `dim_product` |
 
-A Lakeflow job named `northriver_nightly_pipeline` runs the saved queries in dependency order: `03_extract` → `04_transform` → `05_load`. Power BI connects to the Databricks SQL warehouse endpoint and presents revenue by product category, customer region, and sales channel over time.
+### Nightly job flow
+
+The scheduled Lakeflow job `northriver_nightly_pipeline` runs its tasks in dependency order. The initial table setup and sample data changes are one-time preparation; the recurring job begins at extraction.
+
+```mermaid
+flowchart LR
+    A["northriver_oltp<br/>Customers · Products<br/>Orders · Order items"]
+    B["03_extract<br/>Refresh staging copies"]
+    C["northriver_staging<br/>stg_* tables"]
+    D["04_transform<br/>SCD change flags<br/>natural-keyed facts"]
+    E["northriver_staging<br/>xform_* tables"]
+    F["05_load<br/>SCD Type 2 MERGE<br/>point-in-time key lookup"]
+    G[("northriver_warehouse<br/>Dimensions + fact_orders")]
+    H["Power BI<br/>Revenue dashboard"]
+
+    A --> B --> C --> D --> E --> F --> G --> H
+```
+
+The pipeline runs `03_extract` → `04_transform` → `05_load`. Power BI connects to the Databricks SQL warehouse endpoint and reports revenue by product category, customer region, and sales channel over time.
 
 ## Data model and loading decisions
 
@@ -27,7 +45,7 @@ A Lakeflow job named `northriver_nightly_pipeline` runs the saved queries in dep
 
 ## Pipeline SQL
 
-The repository includes the same six SQL scripts saved in the Databricks workspace:
+The repository includes the six SQL scripts used for source setup, simulation, and pipeline execution:
 
 | Query | Repository file | Purpose |
 |---|---|---|
@@ -57,8 +75,6 @@ The Sprint 4 walkthrough reported the following checks:
 - Customer history: the changed customer has the prior and current Type 2 versions; the new customer is added. The walkthrough expected 20 customer dimension rows after the simulation.
 - Late-arriving order: point-in-time joins assign the customer version that was valid on the order date (the historical North region), rather than the current version.
 - Pipeline outputs include row-count summaries in extraction, change-type counts in transformation, and dimension/fact verification queries after loading.
-
-These values and outcomes are taken from the supplied Sprint 4 summary and walkthrough notes; this repository document does not independently query the live Databricks workspace.
 
 ## Limitations and next improvement
 
